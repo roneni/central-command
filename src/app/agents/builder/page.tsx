@@ -20,7 +20,7 @@ export default function AgentBuilder() {
 
   return (
     <div className="h-full flex flex-col bg-bg-base">
-      <div className="border-b border-bg-surface-hover px-6 py-4 flex items-center justify-between bg-bg-surface z-10 sticky top-0">
+      <div className="border-b border-border-subtle px-6 py-4 flex items-center justify-between bg-bg-sidebar z-10 sticky top-0">
         <div>
           <h1 className="text-lg font-bold text-text-primary">Agent Builder Wizard</h1>
           <p className="text-xs text-text-muted">Configure a new AI intelligence</p>
@@ -29,11 +29,11 @@ export default function AgentBuilder() {
           <button className="text-text-secondary hover:text-text-primary px-4 py-2 transition-colors text-sm font-medium">
             Cancel
           </button>
-          <button className="bg-bg-surface-hover hover:bg-bg-surface-active text-text-primary px-4 py-2 border border-bg-surface-hover rounded-md transition-colors flex items-center space-x-2 text-sm font-medium">
+          <button className="bg-transparent hover:bg-bg-surface-hover text-text-primary px-4 py-2 border border-border-subtle rounded-md transition-colors flex items-center space-x-2 text-sm font-medium">
             <Save className="w-4 h-4" />
             <span>Save Draft</span>
           </button>
-          <button className="bg-brand-cyan hover:bg-[#3dbdf0] text-bg-base px-5 py-2 rounded-md font-medium transition-colors text-sm">
+          <button className="bg-brand-magenta hover:brightness-110 text-white px-5 py-2 rounded-md font-medium transition-all text-sm" style={{ boxShadow: '0 0 15px rgba(233,30,140,0.2)' }}>
             Deploy Agent
           </button>
         </div>
@@ -41,14 +41,14 @@ export default function AgentBuilder() {
 
       <div className="flex flex-1 overflow-hidden">
         {/* Left Sidebar Steps */}
-        <div className="w-64 border-r border-bg-surface-hover bg-bg-surface h-full p-4 overflow-y-auto hidden md:block">
+        <div className="w-64 border-r border-border-subtle bg-bg-sidebar h-full p-4 overflow-y-auto hidden md:block">
           <div className="space-y-2">
             {steps.map((step) => {
               const isActive = currentStep === step.id;
               const isPast = currentStep > step.id;
-              
+
               return (
-                <div 
+                <div
                   key={step.id}
                   className={`flex items-center space-x-3 p-3 rounded-lg transition-colors cursor-pointer ${
                     isActive ? 'bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan' :
@@ -72,26 +72,26 @@ export default function AgentBuilder() {
         {/* Form Content Area */}
         <div className="flex-1 overflow-y-auto p-8 lg:p-12">
           <div className="max-w-2xl mx-auto">
-            
+
             {currentStep === 1 && (
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <h2 className="text-2xl font-bold text-text-primary mb-6 flex items-center space-x-2">
-                  <Bot className="w-6 h-6 text-brand-purple" />
+                  <Bot className="w-6 h-6 text-brand-magenta" />
                   <span>Agent Identity</span>
                 </h2>
                 <div className="space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-text-secondary mb-2">Agent Name</label>
-                    <input type="text" placeholder="e.g. Doctor Agent, SEO Optimizer..." className="w-full bg-bg-surface border border-bg-surface-hover rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-brand-cyan transition-colors" />
+                    <input type="text" placeholder="e.g. Doctor Agent, SEO Optimizer..." className="w-full bg-bg-surface border border-border-card rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-colors" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-text-secondary mb-2">System Prompts & Role</label>
-                    <textarea rows={5} placeholder="You are an expert autonomous agent designed to..." className="w-full bg-bg-surface border border-bg-surface-hover rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-brand-cyan transition-colors resize-none"></textarea>
+                    <textarea rows={5} placeholder="You are an expert autonomous agent designed to..." className="w-full bg-bg-surface border border-border-card rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-colors resize-none"></textarea>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-text-secondary mb-4">Avatar Color</label>
                     <div className="flex space-x-4">
-                      {['bg-brand-cyan', 'bg-brand-purple', 'bg-brand-green', 'bg-brand-yellow', 'bg-brand-red'].map((color) => (
+                      {['bg-brand-cyan', 'bg-brand-magenta', 'bg-brand-green', 'bg-brand-yellow', 'bg-brand-red'].map((color) => (
                         <button key={color} className={`w-8 h-8 rounded-full ${color} ring-2 ring-offset-2 ring-offset-bg-base ring-transparent hover:ring-text-muted transition-all cursor-pointer`}></button>
                       ))}
                     </div>
@@ -109,12 +109,12 @@ export default function AgentBuilder() {
                 <p className="text-sm text-text-muted mb-6">Select the tools this agent has permission to use autonomously.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {[
-                    "Read/Write Files", "Execute CLI Commands", "Browse Web", 
+                    "Read/Write Files", "Execute CLI Commands", "Browse Web",
                     "Search Database", "Create/Update Tasks", "Send Slack/Discord Messages",
                     "Generate Images", "Analyze Data"
                   ].map((skill, i) => (
-                    <label key={i} className="flex items-center space-x-3 p-4 border border-bg-surface-hover rounded-lg bg-bg-surface cursor-pointer hover:border-bg-surface-active transition-colors">
-                      <input type="checkbox" className="w-4 h-4 rounded border-bg-surface-hover text-brand-cyan focus:ring-brand-cyan/20 bg-bg-base accent-brand-cyan" />
+                    <label key={i} className="flex items-center space-x-3 p-4 border border-border-card rounded-lg bg-bg-surface cursor-pointer hover:border-border-card-hover transition-colors">
+                      <input type="checkbox" className="w-4 h-4 rounded border-border-subtle text-brand-cyan focus:ring-brand-cyan/20 bg-bg-base accent-brand-cyan" />
                       <span className="text-sm font-medium text-text-primary">{skill}</span>
                     </label>
                   ))}
@@ -124,7 +124,7 @@ export default function AgentBuilder() {
 
             {currentStep > 2 && currentStep < 6 && (
               <div className="animate-in fade-in flex flex-col items-center justify-center py-20 text-text-muted text-center space-y-4">
-                <Settings className="w-12 h-12 relative animate-[spin_4s_linear_infinite] mx-auto text-brand-purple opacity-50" />
+                <Settings className="w-12 h-12 relative animate-[spin_4s_linear_infinite] mx-auto text-brand-cyan opacity-50" />
                 <h3 className="text-xl font-medium text-text-primary">Step {currentStep} Configuration</h3>
                 <p>Placeholder for the complex form configurations according to plan.</p>
               </div>
@@ -137,18 +137,18 @@ export default function AgentBuilder() {
                   <span>Review & Deploy</span>
                 </h2>
                 <div className="space-y-4">
-                  <div className="bg-bg-surface border border-bg-surface-hover rounded-xl p-6">
-                    <p className="text-text-muted text-sm mb-4">Please review your agent's configuration before deployment.</p>
+                  <div className="bg-bg-surface border border-border-card rounded-xl p-6">
+                    <p className="text-text-muted text-sm mb-4">Please review your agent&apos;s configuration before deployment.</p>
                     <ul className="space-y-4 text-sm">
-                      <li className="flex justify-between border-b border-bg-surface-hover pb-3">
+                      <li className="flex justify-between border-b border-border-divider pb-3">
                         <span className="text-text-secondary">Name</span>
                         <span className="text-text-primary font-medium">New AI Agent</span>
                       </li>
-                      <li className="flex justify-between border-b border-bg-surface-hover pb-3">
+                      <li className="flex justify-between border-b border-border-divider pb-3">
                         <span className="text-text-secondary">Capabilities</span>
                         <span className="text-text-primary font-medium text-right">Read Files, Create Tasks</span>
                       </li>
-                      <li className="flex justify-between border-b border-bg-surface-hover pb-3">
+                      <li className="flex justify-between border-b border-border-divider pb-3">
                         <span className="text-text-secondary">LLM Model</span>
                         <span className="text-text-primary font-medium">Claude 3.5 Sonnet</span>
                       </li>
@@ -159,31 +159,32 @@ export default function AgentBuilder() {
             )}
 
             {/* Bottom Nav Buttons */}
-            <div className="mt-12 pt-6 border-t border-bg-surface-hover flex justify-between">
-              <button 
+            <div className="mt-12 pt-6 border-t border-border-divider flex justify-between">
+              <button
                 onClick={handlePrev}
                 disabled={currentStep === 1}
                 className={`flex items-center space-x-2 px-6 py-2 rounded-md font-medium transition-colors text-sm ${
-                  currentStep === 1 
-                  ? 'bg-bg-surface/50 text-text-muted cursor-not-allowed border border-transparent' 
-                  : 'bg-bg-base border border-bg-surface-hover text-text-primary hover:bg-bg-surface'
+                  currentStep === 1
+                  ? 'bg-bg-surface/50 text-text-muted cursor-not-allowed border border-transparent'
+                  : 'bg-transparent border border-border-subtle text-text-primary hover:bg-bg-surface'
                 }`}
               >
                 <ChevronLeft className="w-4 h-4" />
                 <span>Back</span>
               </button>
-              
+
               {currentStep < steps.length ? (
-                <button 
+                <button
                   onClick={handleNext}
-                  className="bg-brand-cyan hover:bg-[#3dbdf0] text-bg-base px-6 py-2 rounded-md font-medium transition-colors flex items-center space-x-2 text-sm"
+                  className="bg-brand-cyan hover:brightness-110 text-bg-base px-6 py-2 rounded-md font-medium transition-all flex items-center space-x-2 text-sm"
                 >
                   <span>Continue</span>
                   <ChevronRight className="w-4 h-4" />
                 </button>
               ) : (
-                <button 
-                  className="bg-brand-green hover:bg-[#2ead7d] text-bg-base px-6 py-2 rounded-md font-medium transition-colors flex items-center space-x-2 text-sm shadow-[0_0_15px_rgba(49,196,141,0.3)]"
+                <button
+                  className="bg-brand-green hover:brightness-110 text-bg-base px-6 py-2 rounded-md font-medium transition-all flex items-center space-x-2 text-sm"
+                  style={{ boxShadow: '0 0 15px rgba(49,196,141,0.3)' }}
                 >
                   <Bot className="w-4 h-4" />
                   <span>Deploy to Workspace</span>

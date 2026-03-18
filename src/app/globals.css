@@ -1,25 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --background: #1a1a2e; /* Base background */
+  --background: #0a0a14; /* Ultra-deep dark base */
   --foreground: #ffffff;
 }
 
 @theme inline {
-  --color-brand-cyan: #49CCF9;
+  --color-brand-cyan: #00e5cc;
+  --color-brand-magenta: #e91e8c;
   --color-brand-purple: #9061F9;
   --color-brand-green: #31C48D;
   --color-brand-yellow: #FACA15;
   --color-brand-red: #F98080;
-  
-  --color-bg-base: #1a1a2e;
-  --color-bg-surface: #1e1e3f;
-  --color-bg-surface-hover: #2a2a5a;
-  --color-bg-surface-active: #333366;
-  
+
+  --color-bg-base: #0a0a14;
+  --color-bg-surface: rgba(255, 255, 255, 0.03);
+  --color-bg-surface-hover: rgba(255, 255, 255, 0.06);
+  --color-bg-surface-active: rgba(255, 255, 255, 0.10);
+  --color-bg-sidebar: #0d0d1a;
+
   --color-text-primary: #ffffff;
-  --color-text-secondary: #a0a0b0;
-  --color-text-muted: #6b7280;
+  --color-text-secondary: rgba(255, 255, 255, 0.7);
+  --color-text-muted: rgba(255, 255, 255, 0.4);
+
+  --color-border-subtle: rgba(0, 229, 204, 0.15);
+  --color-border-card: rgba(0, 229, 204, 0.2);
+  --color-border-card-hover: rgba(0, 229, 204, 0.5);
+  --color-border-divider: rgba(255, 255, 255, 0.05);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -33,4 +40,3 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   @apply antialiased;
 }
-

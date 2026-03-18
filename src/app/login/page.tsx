@@ -25,16 +25,16 @@ export default function LoginPage() {
     <div className="min-h-screen bg-bg-base flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="inline-block p-3 rounded-xl bg-brand-cyan/10 border border-brand-cyan/20 mb-4">
+          <div className="inline-block p-3 rounded-xl bg-brand-cyan/10 border border-brand-cyan/20 mb-4" style={{ boxShadow: '0 0 30px rgba(0,229,204,0.15)' }}>
             <Sparkles className="w-8 h-8 text-brand-cyan" />
           </div>
-          <h1 className="text-3xl font-bold text-text-primary">
+          <h1 className="text-3xl font-extrabold tracking-tight text-text-primary">
             Central Command
           </h1>
-          <p className="text-text-secondary mt-2">I Remove The NoiZe.</p>
+          <p className="text-text-muted mt-2 text-sm">I Remove The NoiZe.</p>
         </div>
 
-        <div className="bg-bg-surface border border-bg-surface-hover rounded-2xl p-8 shadow-xl">
+        <div className="bg-bg-surface border border-border-card rounded-2xl p-8" style={{ boxShadow: '0 0 40px rgba(0,229,204,0.08), 0 20px 60px rgba(0,0,0,0.3)' }}>
           <h2 className="text-xl font-semibold text-text-primary mb-6 text-center">
             Secured Access Only
           </h2>
@@ -42,7 +42,8 @@ export default function LoginPage() {
           <button
             onClick={handleGoogleLogin}
             disabled={loading}
-            className="w-full bg-brand-cyan hover:bg-[#3dbdf0] disabled:opacity-50 disabled:cursor-not-allowed text-bg-base font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-3 transition-colors"
+            className="w-full bg-brand-magenta hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-3 transition-all"
+            style={{ boxShadow: '0 0 20px rgba(233,30,140,0.3)' }}
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path
@@ -65,7 +66,7 @@ export default function LoginPage() {
             {loading ? "Connecting..." : "Sign in with Google"}
           </button>
 
-          <div className="mt-8 pt-6 border-t border-bg-surface-hover text-center">
+          <div className="mt-8 pt-6 border-t border-border-divider text-center">
             <p className="text-xs text-text-muted">
               Unauthorized access attempts are logged and tracked by Sentinel
               Security.

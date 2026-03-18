@@ -42,28 +42,27 @@ export function GoogleServiceCard({
       disabled={!enabled}
       className={`
         group relative w-full text-left rounded-xl p-5
-        bg-bg-surface border border-bg-surface-hover
+        bg-bg-surface border border-border-card
         transition-all duration-200
         ${enabled
-          ? "hover:-translate-y-0.5 hover:shadow-lg cursor-pointer"
-          : "opacity-50 cursor-not-allowed"
+          ? "hover:-translate-y-0.5 hover:border-border-card-hover cursor-pointer"
+          : "opacity-50 cursor-not-allowed border-border-divider"
         }
       `}
-      style={{
-        borderLeftWidth: "3px",
-        borderLeftColor: enabled ? accentColor : "#6b7280",
+      style={enabled ? {
+        boxShadow: undefined,
+      } : undefined}
+      onMouseEnter={(e) => {
+        if (enabled) {
+          (e.currentTarget as HTMLElement).style.boxShadow = `0 0 25px ${accentColor}20, 0 0 10px ${accentColor}10`;
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (enabled) {
+          (e.currentTarget as HTMLElement).style.boxShadow = 'none';
+        }
       }}
     >
-      {/* Hover glow overlay */}
-      {enabled && (
-        <div
-          className="pointer-events-none absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-          style={{
-            boxShadow: `0 0 20px ${accentColor}15, inset 0 0 20px ${accentColor}08`,
-          }}
-        />
-      )}
-
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-3">
@@ -117,7 +116,7 @@ export function GoogleServiceCard({
       )}
 
       {/* Footer */}
-      <div className="flex items-center justify-between pt-3 border-t border-bg-surface-hover">
+      <div className="flex items-center justify-between pt-3 border-t border-border-divider">
         <span className="text-[11px] text-text-muted">
           {enabled ? `Last synced: ${lastSynced}` : "Not connected"}
         </span>

@@ -1,4 +1,32 @@
-import { Calendar, Play, CheckCircle2, Clock, AlertCircle } from "lucide-react";
+"use client";
+
+import { Calendar, Play, CheckCircle2, Clock, AlertCircle, BarChart3, Search, Megaphone } from "lucide-react";
+import { GoogleServiceCard } from "@/components/google/GoogleServiceCard";
+
+// TODO: Replace with real Google API data
+const analyticsStats = [
+  { label: "Sessions", value: "2.4K" },
+  { label: "Users", value: "1.8K" },
+  { label: "vs last week", value: "+12.5%", highlight: "text-brand-green" },
+];
+
+// TODO: Replace with real Google API data
+const searchConsoleStats = [
+  { label: "Impressions", value: "18.2K" },
+  { label: "Clicks", value: "1.2K" },
+  { label: "CTR", value: "6.6%", highlight: "text-brand-green" },
+  { label: "Avg Position", value: "14.3" },
+];
+
+// TODO: Replace with real Google API data
+const adsStats = [
+  { label: "Campaigns", value: "--" },
+  { label: "Spend", value: "--" },
+  { label: "Conversions", value: "--" },
+];
+
+const analyticsSparkline = [30, 45, 38, 60, 55, 70, 65, 80, 72, 90, 85, 95];
+const searchConsoleSparkline = [20, 35, 50, 42, 65, 58, 75, 80, 70, 88, 82, 92];
 
 export default function Home() {
   return (
@@ -15,12 +43,52 @@ export default function Home() {
         </button>
       </div>
 
+      {/* Google Workspace Row */}
+      <section>
+        <h2 className="text-xs font-semibold uppercase tracking-widest text-text-muted mb-3">
+          Google Workspace
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <GoogleServiceCard
+            title="Google Analytics"
+            icon={BarChart3}
+            stats={analyticsStats}
+            accentColor="#4285F4"
+            accentClass="text-[#4285F4]"
+            lastSynced="5m ago"
+            enabled={true}
+            sparkline={analyticsSparkline}
+            onClick={() => {}}
+          />
+          <GoogleServiceCard
+            title="Search Console"
+            icon={Search}
+            stats={searchConsoleStats}
+            accentColor="#31C48D"
+            accentClass="text-brand-green"
+            lastSynced="5m ago"
+            enabled={true}
+            sparkline={searchConsoleSparkline}
+            onClick={() => {}}
+          />
+          <GoogleServiceCard
+            title="Google Ads"
+            icon={Megaphone}
+            stats={adsStats}
+            accentColor="#6b7280"
+            accentClass="text-text-muted"
+            lastSynced=""
+            enabled={false}
+          />
+        </div>
+      </section>
+
       {/* Grid Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
+
         {/* Recents & My Work (2 cols) */}
         <div className="lg:col-span-2 space-y-6">
-          
+
           {/* My Work */}
           <section className="bg-bg-surface border border-bg-surface-hover rounded-xl p-6 shadow-sm">
             <h2 className="text-lg font-semibold mb-4 flex items-center space-x-2">
@@ -45,7 +113,7 @@ export default function Home() {
                 <div className="text-xs text-text-muted mt-1 uppercase tracking-wider">Unscheduled</div>
               </div>
             </div>
-            
+
             <div className="space-y-2">
               {[
                 { title: "Review AIA Agency Landing Page", space: "AIA Agency", status: "In Progress", priority: "High" },
@@ -63,8 +131,8 @@ export default function Home() {
                   <div className="flex items-center space-x-3 text-xs">
                     <span className="px-2 py-1 rounded bg-bg-base border border-bg-surface-hover text-text-secondary">{task.status}</span>
                     <span className={`px-2 py-1 rounded border border-bg-base ${
-                      task.priority === 'Urgent' ? 'bg-brand-red/10 text-brand-red' : 
-                      task.priority === 'High' ? 'bg-brand-yellow/10 text-brand-yellow' : 
+                      task.priority === 'Urgent' ? 'bg-brand-red/10 text-brand-red' :
+                      task.priority === 'High' ? 'bg-brand-yellow/10 text-brand-yellow' :
                       'bg-bg-surface-active text-text-muted'
                     }`}>{task.priority}</span>
                   </div>
@@ -117,7 +185,7 @@ export default function Home() {
 
         {/* Sidebar Widgets (1 col) */}
         <div className="space-y-6">
-          
+
           {/* Agenda / Calendar */}
           <section className="bg-bg-surface border border-bg-surface-hover rounded-xl p-6 shadow-sm">
             <h2 className="text-lg font-semibold mb-4 flex items-center space-x-2">
